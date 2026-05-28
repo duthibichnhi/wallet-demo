@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
   <title>Lịch sử giao dịch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -151,6 +151,7 @@
       align-items: center;
       gap: 12px;
       padding: 12px;
+      padding-top: calc(env(safe-area-inset-top) + 12px);
       flex-shrink: 0;
     }
     .nav-action {
@@ -180,7 +181,8 @@
       align-items: center;
       gap: 12px;
       padding: 12px;
-      height: 56px;
+      padding-top: calc(env(safe-area-inset-top) + 12px);
+      height: calc(env(safe-area-inset-top) + 56px);
       flex-shrink: 0;
     }
     .search-field {
@@ -1025,13 +1027,15 @@
               <div class="tx-date">17:08, 29/10/2025</div>
             </div>
             <div class="tx-amount-col">
-              <div class="amount-row disabled">
-                <span class="amount-value">0.000</span>
+              <div class="amount-row">
+                <span class="amount-sign">-</span>
+                <span class="amount-value">150.000</span>
                 <span class="amount-unit">₫</span>
               </div>
               <div class="balance-row">
                 <span class="balance-label">Số dư ví:&nbsp;</span>
-                <span class="balance-value">******</span>
+                <span class="balance-value">10.000</span>
+                <span class="balance-unit">₫</span>
               </div>
               <span class="status-pending">Đang xử lý</span>
             </div>
