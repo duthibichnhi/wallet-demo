@@ -383,8 +383,12 @@
     .amount-row.positive .amount-sign,
     .amount-row.positive .amount-value,
     .amount-row.positive .amount-unit { color: #16a34a; }
+    .amount-row.disabled .amount-sign,
     .amount-row.disabled .amount-value,
     .amount-row.disabled .amount-unit { color: rgba(10,10,10,0.25); }
+    .amount-row.processing .amount-sign,
+    .amount-row.processing .amount-value,
+    .amount-row.processing .amount-unit { color: rgba(10,10,10,0.25); }
 
     /* wallet balance */
     .balance-row {
@@ -1027,7 +1031,7 @@
               <div class="tx-date">17:08, 29/10/2025</div>
             </div>
             <div class="tx-amount-col">
-              <div class="amount-row">
+              <div class="amount-row processing">
                 <span class="amount-sign">-</span>
                 <span class="amount-value">150.000</span>
                 <span class="amount-unit">₫</span>
