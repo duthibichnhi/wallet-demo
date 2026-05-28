@@ -315,7 +315,12 @@
       gap: 12px;
       align-items: flex-start;
       padding: 12px 0;
+      border-radius: 12px;
+      margin: 0 -8px;
+      padding-left: 8px;
+      padding-right: 8px;
     }
+    .tx-item:active { background: #f5f5f5; }
 
     /* icon circle */
     .tx-icon {
@@ -1552,6 +1557,24 @@
       pendingMonthFilter = 'all';
       pendingStatusFilter = 'all';
       syncSheetUI();
+    });
+
+    // ── Tx item click → detail page ──
+    document.querySelectorAll('.tx-item').forEach(item => {
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', () => {
+        const tx = {
+          type: item.dataset.type,
+          status: item.dataset.status,
+          name: (item.querySelector('.tx-name')?.textContent || '').trim(),
+          date: (item.querySelector('.tx-date')?.textContent || '').trim(),
+          sign: (item.querySelector('.amount-sign')?.textContent || '').trim(),
+          amount: (item.querySelector('.amount-value')?.textContent || '').trim(),
+          iconSvg: item.querySelector('.tx-icon')?.innerHTML || '',
+        };
+        sessionStorage.setItem('txDetail', JSON.stringify(tx));
+        location.href = 'transaction-detail.html';
+      });
     });
 
     // ── Balance mask ──
