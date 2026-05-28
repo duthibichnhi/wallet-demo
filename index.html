@@ -1115,11 +1115,24 @@
       document.getElementById('default-nav').hidden = false;
       document.getElementById('ios-keyboard').hidden = true;
       document.getElementById('search-input').value = '';
+      clearTimeout(searchTimer);
+      searchQuery = '';
+      applyAllFilters();
     }
     document.getElementById('search-btn').addEventListener('click', openSearch);
     document.getElementById('search-close').addEventListener('click', closeSearch);
 
     // ── Virtual keyboard ──
+    function triggerSearchDebounce() {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        searchQuery = document.getElementById('search-input').value.trim().toLowerCase();
+        applyAllFilters();
+      }, 1000);
+    }
+
+    document.getElementById('search-input').addEventListener('input', triggerSearchDebounce);
+
     document.querySelectorAll('.kb-key[data-char]').forEach(key => {
       key.addEventListener('mousedown', e => {
         e.preventDefault();
@@ -1129,6 +1142,7 @@
         input.value = input.value.slice(0, s) + ch + input.value.slice(en);
         input.setSelectionRange(s + 1, s + 1);
         input.focus();
+        triggerSearchDebounce();
       });
     });
     document.getElementById('kb-delete').addEventListener('mousedown', e => {
@@ -1140,6 +1154,7 @@
         input.setSelectionRange(s - 1, s - 1);
       }
       input.focus();
+      triggerSearchDebounce();
     });
     document.getElementById('kb-return').addEventListener('mousedown', e => {
       e.preventDefault();
@@ -1152,6 +1167,8 @@
     let pendingStatusFilter = 'all';
     let appliedMonthFilter = 'all';
     let appliedStatusFilter = 'all';
+    let searchQuery = '';
+    let searchTimer = null;
 
     function updateBadge() {
       const count = (appliedMonthFilter !== 'all' ? 1 : 0) + (appliedStatusFilter !== 'all' ? 1 : 0);
@@ -1166,7 +1183,9 @@
         const typeOk = activeTypeFilter === 'all' || item.dataset.type === activeTypeFilter;
         const monthOk = appliedMonthFilter === 'all' || item.dataset.month === appliedMonthFilter;
         const statusOk = appliedStatusFilter === 'all' || item.dataset.status === appliedStatusFilter;
-        item.hidden = !(typeOk && monthOk && statusOk);
+        const nameText = (item.querySelector('.tx-name')?.textContent || '').toLowerCase();
+        const searchOk = searchQuery === '' || nameText.includes(searchQuery);
+        item.hidden = !(typeOk && monthOk && statusOk && searchOk);
       });
       document.querySelectorAll('.month-group').forEach(group => {
         const hasVisible = [...group.querySelectorAll('.tx-item')].some(i => !i.hidden);
