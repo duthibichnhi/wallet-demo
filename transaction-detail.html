@@ -26,29 +26,29 @@
       background: linear-gradient(to bottom, #ffedd5 0%, #f87171 100%);
       display: flex;
       flex-direction: column;
-      gap: 4px;
       position: relative;
       overflow: hidden;
     }
 
-    /* ── Nav bar ── */
+    /* ── Nav bar (match history page exactly) ── */
     .nav-bar {
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 12px;
       padding-top: calc(env(safe-area-inset-top) + 12px);
-      height: calc(env(safe-area-inset-top) + 56px);
       flex-shrink: 0;
     }
     .nav-back {
       width: 32px; height: 32px;
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; background: none; border: none; padding: 0;
+      flex-shrink: 0;
     }
     .nav-title {
+      flex: 1; min-width: 0;
       font-size: 18px; font-weight: 600; color: #0a0a0a;
-      line-height: 28px; flex: 1;
+      line-height: 28px;
     }
 
     /* ── Main container ── */
@@ -65,6 +65,7 @@
 
     .content {
       padding: 16px;
+      padding-bottom: 100px;
       flex: 1;
       display: flex; flex-direction: column; gap: 16px;
     }
@@ -147,12 +148,16 @@
     .status-processing { color: #0a0a0a; }
     .status-failed { color: #ef4444; }
 
-    /* ── Bottom CTA ── */
+    /* ── Bottom area (fixed at bottom of screen) ── */
+    .bottom-area {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 3;
+      background: #ffffff;
+    }
     .bottom-cta {
       padding: 16px;
-      padding-bottom: calc(env(safe-area-inset-bottom, 8px) + 8px);
       flex-shrink: 0;
-      background: #ffffff;
     }
     .cta-btn {
       width: 100%; height: 48px;
@@ -165,6 +170,15 @@
       display: flex; align-items: center; justify-content: center;
     }
     .cta-btn:active { background: #f5f5f5; }
+    .home-indicator {
+      display: flex; align-items: center; justify-content: center;
+      padding: 8px 0;
+      background: #ffffff;
+    }
+    .home-indicator-bar {
+      width: 139px; height: 5px;
+      background: #0a0a0a; border-radius: 100px;
+    }
 
     /* Toast */
     .toast {
@@ -222,10 +236,15 @@
         <div class="card" id="extra-section" style="display:none"></div>
 
       </div>
+    </div>
 
-      <!-- CTA -->
+    <!-- Bottom (fixed) -->
+    <div class="bottom-area" id="bottom-area">
       <div class="bottom-cta" id="bottom-cta" style="display:none">
         <button class="cta-btn" id="cta-btn"></button>
+      </div>
+      <div class="home-indicator">
+        <div class="home-indicator-bar"></div>
       </div>
     </div>
 
