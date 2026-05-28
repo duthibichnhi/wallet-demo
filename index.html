@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#ffedd5">
   <meta name="mobile-web-app-capable" content="yes">
   <title>Lịch sử giao dịch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,12 +14,16 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     [hidden] { display: none !important; }
 
+    html {
+      overscroll-behavior: none;
+    }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: linear-gradient(to bottom, #ffedd5 0%, #f87171 100%);
       margin: 0;
       padding: 0;
       min-height: 100dvh;
+      overscroll-behavior: none;
     }
 
     .screen {
@@ -222,6 +227,7 @@
       flex-direction: column;
       overflow-y: auto;
       overflow-x: hidden;
+      overscroll-behavior-y: none;
       scrollbar-width: none;
       padding-bottom: 36px;
     }
