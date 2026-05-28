@@ -26,6 +26,7 @@
       background: linear-gradient(to bottom, #ffedd5 0%, #f87171 100%);
       display: flex;
       flex-direction: column;
+      gap: 4px;
       position: relative;
       overflow: hidden;
     }
@@ -46,8 +47,8 @@
       cursor: pointer; background: none; border: none; padding: 0;
     }
     .nav-title {
-      font-size: 16px; font-weight: 600; color: #0a0a0a;
-      line-height: 24px; flex: 1;
+      font-size: 18px; font-weight: 600; color: #0a0a0a;
+      line-height: 28px; flex: 1;
     }
 
     /* ── Main container ── */
@@ -62,27 +63,47 @@
     }
     .main-container::-webkit-scrollbar { display: none; }
 
-    .content { padding: 0 16px; flex: 1; }
+    .content {
+      padding: 16px;
+      flex: 1;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+
+    /* ── Card (shared) ── */
+    .card {
+      background: #fafafa;
+      border-radius: 16px;
+      padding: 8px 16px;
+      width: 100%;
+    }
 
     /* ── Hero card ── */
     .hero {
-      display: flex; align-items: center; gap: 12px;
-      padding: 16px 0;
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px;
     }
     .hero-icon {
-      width: 40px; height: 40px; flex-shrink: 0;
+      width: 48px; height: 48px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
+      background: #ffffff;
+      border-radius: 9999px;
     }
-    .hero-icon svg { width: 20px; height: 20px; }
-    .hero-info { display: flex; flex-direction: column; gap: 2px; }
-    .hero-label { font-size: 14px; font-weight: 500; color: #0a0a0a; line-height: 20px; }
-    .hero-amount { display: flex; align-items: baseline; gap: 0; }
+    .hero-icon svg { width: 28px; height: 28px; }
+    .hero-info {
+      display: flex; flex-direction: column; gap: 0;
+      flex: 1; min-width: 0;
+    }
+    .hero-label {
+      font-size: 16px; font-weight: 400; color: #0a0a0a;
+      line-height: 24px;
+    }
+    .hero-amount { display: flex; align-items: baseline; gap: 2px; }
     .hero-amount-value {
-      font-size: 20px; font-weight: 600; color: #0a0a0a; line-height: 28px;
+      font-size: 18px; font-weight: 600; color: #0a0a0a; line-height: 28px;
     }
     .hero-amount-unit {
-      font-size: 11px; font-weight: 600; color: #0a0a0a;
-      line-height: 1.2; padding-top: 2px;
+      font-size: 10.32px; font-weight: 500; color: #0a0a0a;
+      line-height: 24px;
     }
     .hero-amount.positive .hero-amount-value,
     .hero-amount.positive .hero-amount-unit { color: #16a34a; }
@@ -91,54 +112,55 @@
     .hero-amount.failed .hero-amount-value,
     .hero-amount.failed .hero-amount-unit { color: rgba(10,10,10,0.25); }
 
-    /* ── Sections ── */
-    .section {
-      border-top: 1px solid #f5f5f5;
-      padding: 16px 0;
-    }
+    /* ── Section rows ── */
     .section-row {
       display: flex; justify-content: space-between; align-items: center;
-      min-height: 32px; gap: 16px;
+      min-height: 40px; gap: 8px;
+      padding: 8px 0;
     }
-    .section-row + .section-row { margin-top: 12px; }
     .row-label {
-      font-size: 14px; font-weight: 400; color: #737373;
-      line-height: 20px; flex-shrink: 0;
+      font-size: 16px; font-weight: 400; color: #0a0a0a;
+      line-height: 24px; flex-shrink: 0;
     }
     .row-value {
-      font-size: 14px; font-weight: 500; color: #0a0a0a;
-      line-height: 20px; text-align: right;
+      font-size: 16px; font-weight: 500; color: #0a0a0a;
+      line-height: 24px; text-align: right;
+      flex: 1; min-width: 0;
       word-break: break-all;
     }
     .row-value-with-copy {
-      display: flex; align-items: center; gap: 6px;
+      display: flex; align-items: center; gap: 8px;
+      justify-content: flex-end;
+      flex: 1; min-width: 0;
     }
     .copy-btn {
-      width: 20px; height: 20px; flex-shrink: 0;
+      width: 24px; height: 24px; flex-shrink: 0;
       background: none; border: none; padding: 0; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      opacity: 0.4;
     }
-    .copy-btn:active { opacity: 0.8; }
+    .copy-btn:active { opacity: 0.6; }
+    .copy-btn svg { width: 20px; height: 20px; }
 
     /* Status */
-    .status-value { font-size: 14px; font-weight: 600; line-height: 20px; }
+    .status-value { font-size: 16px; font-weight: 600; line-height: 24px; }
     .status-success { color: #16a34a; }
     .status-processing { color: #0a0a0a; }
     .status-failed { color: #ef4444; }
 
     /* ── Bottom CTA ── */
     .bottom-cta {
-      padding: 12px 16px 36px;
+      padding: 16px;
+      padding-bottom: calc(env(safe-area-inset-bottom, 8px) + 8px);
       flex-shrink: 0;
+      background: #ffffff;
     }
     .cta-btn {
       width: 100%; height: 48px;
-      border-radius: 12px;
-      border: 1px solid #d4d4d4;
+      border-radius: 9999px;
+      border: 1px solid #737373;
       background: #ffffff;
       font-family: inherit;
-      font-size: 16px; font-weight: 600; color: #0a0a0a;
+      font-size: 16px; font-weight: 500; color: #0a0a0a;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
     }
@@ -174,7 +196,7 @@
       <div class="content">
 
         <!-- Hero -->
-        <div class="hero">
+        <div class="card hero">
           <div class="hero-icon" id="hero-icon"></div>
           <div class="hero-info">
             <div class="hero-label" id="hero-label"></div>
@@ -186,7 +208,7 @@
         </div>
 
         <!-- Status -->
-        <div class="section">
+        <div class="card">
           <div class="section-row">
             <span class="row-label">Trạng thái</span>
             <span class="status-value" id="status-value"></span>
@@ -194,10 +216,10 @@
         </div>
 
         <!-- Info section -->
-        <div class="section" id="info-section"></div>
+        <div class="card" id="info-section"></div>
 
         <!-- Extra section (type-specific) -->
-        <div class="section" id="extra-section" style="display:none"></div>
+        <div class="card" id="extra-section" style="display:none"></div>
 
       </div>
 
